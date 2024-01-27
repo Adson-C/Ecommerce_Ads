@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "540013255086",
+    "project_id": "my-ecommerce-26ab5",
+    "storage_bucket": "my-ecommerce-26ab5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540013255086:android:182f718af9c45cf2b9503f",
+        "android_client_info": {
+          "package_name": "com.ads.johnecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATQMWqxKd1Et5MqKHZaCHxLtphrU_ANe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
