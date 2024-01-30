@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">JohnEcommerce</string>
+    <string name="email_hint">Email</string>
+    <string name="senha_hint">Senha</string>
+    <string name="login_text">Login</string>
+    <string name="n_o_tem_conta">Não tem conta ?</string>
+    <string name="escreva_se">Escreva-se</string>
 </resources>
