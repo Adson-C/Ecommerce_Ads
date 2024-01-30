@@ -5,4 +5,5 @@
     <string name="login_text">Login</string>
     <string name="n_o_tem_conta">Não tem conta ?</string>
     <string name="escreva_se">Escreva-se</string>
+    <string name="recuperar_senha">Recuperar senha</string>
 </resources>
