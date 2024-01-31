@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1F374A"
-    tools:context=".autenticacao.LoginActivity">
+    tools:context=".autenticacao.CadastroActivity">
+
 
     <ScrollView
         android:layout_width="0dp"
@@ -13,10 +14,8 @@
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,23 +27,24 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="InvalidId" />
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <EditText
-                android:id="@+id/edtEmail"
+                android:id="@+id/edtNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
                 android:background="@drawable/bg_edit_off"
-                android:drawableStart="@drawable/ic_email_off"
+                android:drawableStart="@drawable/ic_user_login_off"
                 android:drawablePadding="16dp"
-                android:hint="@string/email_hint"
-                android:inputType="textEmailAddress"
+                android:hint="@string/hint_nome"
+                android:inputType="textPersonName"
                 android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/edtSenha"
+                android:layout_marginTop="60dp"
+                android:layout_marginHorizontal="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/edtEmal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,62 +52,89 @@
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <EditText
-                android:id="@+id/edtSenha"
+                android:id="@+id/edtEmal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_off"
+                android:drawableStart="@drawable/ic_email_off"
+                android:drawablePadding="16dp"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/edtSena"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNome" />
+
+            <EditText
+                android:id="@+id/edtSena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bg_edit_off"
                 android:drawableStart="@drawable/ic_senha_off"
                 android:drawablePadding="16dp"
-                android:hint="@string/senha_hint"
+                android:hint="@string/hint_senha"
                 android:inputType="textPassword"
                 android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/edtSenConfirma"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/edtEmal" />
 
-            <Button
-                android:id="@+id/btnLogin"
+            <EditText
+                android:id="@+id/edtSenConfirma"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_off"
+                android:drawableStart="@drawable/ic_senha_off"
+                android:drawablePadding="16dp"
+                android:hint="@string/hint_senhaconfirma"
+                android:inputType="textPassword"
+                android:padding="16dp"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnCriar_conta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtSena" />
+
+            <android.widget.Button
+                android:id="@+id/btnCriar_conta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn"
-                android:text="@string/login_text"
+                android:text="@string/criar_conta"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/progressBarLogin"
-                app:layout_constraintTop_toBottomOf="@+id/edtSenha"
-                tools:layout_editor_absoluteX="0dp" />
-
-            <TextView
-                android:id="@+id/btnRecuperarSenha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/recuperar_senha"
-                android:textColor="@color/white"
-                android:layout_marginEnd="24dp"
-                android:paddingVertical="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
-            <ProgressBar
-                android:id="@+id/progressBarLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:indeterminateTint="@color/laranja"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/progressBarCriar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@+id/edtSenConfirma" />
+
+            <ProgressBar
+                android:id="@+id/progressBarCriar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/laranja"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCriar_conta" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -123,7 +150,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/n_o_tem_conta"
+                    android:text="@string/ja_tem_conta"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -132,16 +159,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:paddingVertical="16dp"
-                    android:text="@string/escreva_se"
+                    android:text="@string/login_fazer"
                     android:textColor="@color/laranja"
                     android:textStyle="bold" />
 
 
             </LinearLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

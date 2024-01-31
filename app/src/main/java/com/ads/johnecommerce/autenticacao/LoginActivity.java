@@ -22,8 +22,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void configClicks(){
-        binding.btnRecuperarSenha.setOnClickListener(v -> {
-            startActivity(new Intent(this, RecuperaContaActivity.class));
-        });
+        binding.btnRecuperarSenha.setOnClickListener(v ->
+            startActivity(new Intent(this, RecuperaContaActivity.class)));
+
+        binding.btnCadstrase.setOnClickListener(v ->
+                startActivity(new Intent(this, CadastroActivity.class)));
     }
 }

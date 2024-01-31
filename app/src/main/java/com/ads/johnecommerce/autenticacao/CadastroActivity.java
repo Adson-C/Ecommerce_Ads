@@ -4,21 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.ads.johnecommerce.databinding.ActivityRecuperaContaBinding;
+import com.ads.johnecommerce.R;
+import com.ads.johnecommerce.databinding.ActivityCadastroBinding;
 
-public class RecuperaContaActivity extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity {
 
-    private ActivityRecuperaContaBinding binding;
+    private ActivityCadastroBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRecuperaContaBinding.inflate(getLayoutInflater());
+        binding = ActivityCadastroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         configClicks();
     }
-    private void configClicks(){
+
+    private void configClicks() {
+
         binding.include.ibVoltar.setOnClickListener(v -> finish());
+        binding.btnCadstrase.setOnClickListener(v -> finish());
+
     }
 }
