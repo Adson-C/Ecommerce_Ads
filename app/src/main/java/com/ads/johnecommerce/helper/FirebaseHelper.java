@@ -45,6 +45,7 @@ public class FirebaseHelper {
         return getAuth().getCurrentUser() != null;
     }
 
+
     public static String validaErros(String erro){
         String mensagem = "";
 

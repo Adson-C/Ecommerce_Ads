@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.ads.johnecommerce.autenticacao.LoginActivity;
 import com.ads.johnecommerce.databinding.ActivityMainBinding;
+import com.ads.johnecommerce.helper.FirebaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +21,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnLoginMain.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            if (FirebaseHelper.getAutenticao()){
+                FirebaseHelper.getAuth().signOut();
+                Toast.makeText(this, "Usuario já autenticado", Toast.LENGTH_SHORT).show();
+            }else {
+                startActivity(new Intent(this, LoginActivity.class));
+            }
         });
     }
 }

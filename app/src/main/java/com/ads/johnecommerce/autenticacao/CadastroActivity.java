@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.ads.johnecommerce.R;
 import com.ads.johnecommerce.databinding.ActivityCadastroBinding;
 import com.ads.johnecommerce.helper.FirebaseHelper;
 import com.ads.johnecommerce.model.Usuario;
@@ -51,7 +50,6 @@ public class CadastroActivity extends AppCompatActivity {
                             binding.edtSenConfirma.requestFocus();
                             binding.edtSenConfirma.setError("Senha não confere.");
                         }
-
                     }else {
                         binding.edtSenConfirma.requestFocus();
                         binding.edtSenConfirma.setError("Confirme sua senha.");
@@ -73,7 +71,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
-    private void criarConta(Usuario usuario) {
+    private void criarConta(Usuario usuario){
         FirebaseHelper.getAuth().createUserWithEmailAndPassword(
                 usuario.getEmail(), usuario.getSenha()
         ).addOnCompleteListener(task -> {
@@ -97,7 +95,6 @@ public class CadastroActivity extends AppCompatActivity {
 
             }
 
-            binding.progressBarCriar.setVisibility(View.GONE);
         });
 
     }

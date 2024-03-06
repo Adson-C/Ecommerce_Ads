@@ -4,7 +4,11 @@ import com.ads.johnecommerce.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
-public class Usuario {
+import java.io.Serializable;
+
+
+
+public class Usuario implements Serializable {
 
     private String id;
     private String nome;
@@ -15,6 +19,7 @@ public class Usuario {
     public Usuario() {
 
     }
+
 
     public String getId() {
         return id;
@@ -57,6 +62,7 @@ public class Usuario {
         this.confimaSenha = confimaSenha;
     }
 
+    // metodo para salvar usuario no FirebaseHelper
     public void salvar() {
         DatabaseReference usuariRef = FirebaseHelper.getDatabaseReference()
                 .child("usuarios")

@@ -6,9 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.ads.johnecommerce.R;
 import com.ads.johnecommerce.databinding.ActivityLoginBinding;
+import com.ads.johnecommerce.helper.FirebaseHelper;
+import com.ads.johnecommerce.model.Usuario;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -33,7 +39,47 @@ public class LoginActivity extends AppCompatActivity {
         configClicks();
     }
 
+    public void validaDadosLogin(View view) {
+
+        String email = binding.edtEmail.getText().toString().trim();
+        String senha = binding.edtSenha.getText().toString().trim();
+
+            if (!email.isEmpty()){
+                if (!senha.isEmpty()){
+                    binding.progressBarLogin.setVisibility(View.VISIBLE);
+                    // metodo para logar
+                    login(email, senha);
+
+                }else {
+                    binding.edtSenha.requestFocus();
+                    binding.edtSenha.setError("Informe sua senha.");
+                }
+
+            }else {
+                binding.edtEmail.requestFocus();
+                binding.edtEmail.setError("Informe seu E-mail.");
+            }
+    }
+
+    // metodo para fazer login no app
+    private void login(String email, String senha){
+        FirebaseHelper.getAuth().signInWithEmailAndPassword(
+                email, senha
+        ).addOnCompleteListener(task -> {
+           if (task.isSuccessful()){
+               finish();
+           }else {
+               Toast.makeText(this, FirebaseHelper.validaErros(task.getException().getMessage()), Toast.LENGTH_SHORT).show();
+           }
+            binding.progressBarLogin.setVisibility(View.GONE);
+        });
+    }
+
+
+
     private void configClicks() {
+        binding.include.ibVoltar.setOnClickListener(view -> finish());
+
         binding.btnRecuperarSenha.setOnClickListener(v ->
                 startActivity(new Intent(this, RecuperaContaActivity.class)));
 
