@@ -8,7 +8,7 @@ import android.os.Handler;
 
 import com.ads.johnecommerce.R;
 
-public class SplashActivity extends AppCompatActivity {
+public class  SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
