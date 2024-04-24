@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.ads.johnecommerce"
-        minSdk 21
+        minSdk 23
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,7 @@ android {
 
 dependencies {
 
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -47,4 +48,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-storage")
+
+//    def nav_version = "2.3.0"
+
+    implementation "androidx.navigation:navigation-fragment:2.1.0-alpha02"
+    implementation "androidx.navigation:navigation-ui:2.1.0-alpha02"
+//    implementation "androidx.navigation:navigation-ui-ktx:2.1.0-alpha02"
 }

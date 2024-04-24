@@ -1,4 +1,4 @@
-package com.ads.johnecommerce.activity;
+package com.ads.johnecommerce.activity.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.ads.johnecommerce.R;
+import com.ads.johnecommerce.activity.usuario.MainActivityUsuario;
 
 public class  SplashActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class  SplashActivity extends AppCompatActivity {
 
         new Handler(getMainLooper()).postDelayed(() ->{
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, MainActivityUsuario.class));
 
         }, 3000);
     }
