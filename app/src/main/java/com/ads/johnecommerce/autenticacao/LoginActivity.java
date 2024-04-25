@@ -2,6 +2,7 @@ package com.ads.johnecommerce.autenticacao;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,9 +11,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.ads.johnecommerce.R;
+import com.ads.johnecommerce.activity.loja.MainActivityEmpresa;
+import com.ads.johnecommerce.activity.usuario.MainActivityUsuario;
 import com.ads.johnecommerce.databinding.ActivityLoginBinding;
 import com.ads.johnecommerce.helper.FirebaseHelper;
 import com.ads.johnecommerce.model.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -67,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                 email, senha
         ).addOnCompleteListener(task -> {
            if (task.isSuccessful()){
+               recuperaUsuario(task.getResult().getUser().getUid());
+
                finish();
            }else {
                Toast.makeText(this, FirebaseHelper.validaErros(task.getException().getMessage()), Toast.LENGTH_SHORT).show();
@@ -75,6 +84,29 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void recuperaUsuario(String id) {
+        DatabaseReference usuariRef = FirebaseHelper.getDatabaseReference()
+                .child("usuarios")
+                .child(id);
+        usuariRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) { // Se for Usuario
+                    finish();
+                    startActivity(new Intent(getBaseContext(), MainActivityUsuario.class));
+                }else { //  se Loja
+                    finish();
+                    startActivity(new Intent(getBaseContext(), MainActivityEmpresa.class));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
     private void configClicks() {

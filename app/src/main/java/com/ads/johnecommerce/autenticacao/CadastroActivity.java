@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.ads.johnecommerce.databinding.ActivityCadastroBinding;
 import com.ads.johnecommerce.helper.FirebaseHelper;
+import com.ads.johnecommerce.model.Loja;
 import com.ads.johnecommerce.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -38,7 +39,10 @@ public class CadastroActivity extends AppCompatActivity {
                         if (senha.equals(confirmasenha)){
 
                             binding.progressBarCriar.setVisibility(View.VISIBLE);
+
+
                             // gravar dados do usuario
+
                             Usuario usuario = new Usuario();
                             usuario.setNome(nome);
                             usuario.setEmail(email);

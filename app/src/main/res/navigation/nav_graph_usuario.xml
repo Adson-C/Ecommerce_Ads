@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_usuario_home" />
     <fragment
         android:id="@+id/menu_pedidos"
-        android:name="com.ads.johnecommerce.fragment.usuario.UsuarioPedidoFragment"
+        android:name="com.ads.johnecommerce.fragment.usuario.UsuarioPedidosFragment"
         android:label="UsuarioPedidoFragment" />
     <fragment
         android:id="@+id/menu_carrinho"
