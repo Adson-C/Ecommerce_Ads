@@ -1,15 +1,14 @@
 package com.ads.johnecommerce.activity.loja;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-
-import android.os.Bundle;
+import androidx.navigation.ui.NavigationUI;
 
 import com.ads.johnecommerce.R;
 import com.ads.johnecommerce.databinding.ActivityMainEmpresaBinding;
-import com.ads.johnecommerce.databinding.ActivityMainUsuarioBinding;
 
 public class MainActivityEmpresa extends AppCompatActivity {
 
@@ -21,11 +20,11 @@ public class MainActivityEmpresa extends AppCompatActivity {
         binding = ActivityMainEmpresaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       /* NavHostFragment navHostFragment =
-                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nv_host_fragment);
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nv_perfil_fragment);
         NavController navController = navHostFragment.getNavController();
 
-        Navigation.setViewNavController(binding.);*/
+        NavigationUI.setupWithNavController(binding.bottomNavigationViewPerfil, navController);
 
     }
 }

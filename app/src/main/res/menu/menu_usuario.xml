@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_inico"/>
 
     <item
-        android:id="@+id/menu_pedidos"
+        android:id="@+id/menu_pedido"
         android:title="pedidos"
         android:icon="@drawable/ic_pedidos"/>
 
