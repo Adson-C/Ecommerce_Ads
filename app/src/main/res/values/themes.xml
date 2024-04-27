@@ -24,5 +24,14 @@
     </style>
 
 
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
+
+
+
+
     <style name="Theme.JohnEcommerce" parent="Base.Theme.JohnEcommerce" />
 </resources>
