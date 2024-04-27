@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ads.johnecommerce.R;
+import com.ads.johnecommerce.databinding.DialogFormCategBinding;
 import com.ads.johnecommerce.databinding.FragmentLojaCategoriaBinding;
 
 public class LojaCategoriaFragment extends Fragment {
@@ -41,9 +42,19 @@ public class LojaCategoriaFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(
                 getContext(), R.style.CustomAlertDialog);
-        View view = getLayoutInflater().inflate(R.layout.dialog_form_categ, null);
 
-        builder.setView(view);
+        DialogFormCategBinding categBinding = DialogFormCategBinding
+                .inflate(LayoutInflater.from(getContext()));
+
+        categBinding.btnFechar.setOnClickListener(view -> {
+            dialog.dismiss();
+        });
+
+        categBinding.btnSalvar.setOnClickListener(view -> {
+            dialog.dismiss();
+        });
+
+        builder.setView(categBinding.getRoot());
 
         dialog = builder.create();
         dialog.show();
