@@ -3,6 +3,7 @@ package com.ads.johnecommerce.fragment.loja;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -25,6 +27,11 @@ import androidx.fragment.app.Fragment;
 import com.ads.johnecommerce.R;
 import com.ads.johnecommerce.databinding.DialogFormCategBinding;
 import com.ads.johnecommerce.databinding.FragmentLojaCategoriaBinding;
+import com.ads.johnecommerce.helper.FirebaseHelper;
+import com.ads.johnecommerce.model.Categoria;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
@@ -32,10 +39,12 @@ import java.util.List;
 
 public class LojaCategoriaFragment extends Fragment {
 
+
     private DialogFormCategBinding categBinding;
     private String caminhoImagem = null;
     private FragmentLojaCategoriaBinding binding;
     private AlertDialog dialog;
+    private Categoria categoria;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +77,29 @@ public class LojaCategoriaFragment extends Fragment {
         });
 
         categBinding.btnSalvar.setOnClickListener(view -> {
-            dialog.dismiss();
+
+            String nomeCategoria = categBinding.edtCategoria.getText().toString().trim();
+
+            if (!nomeCategoria.isEmpty()){
+                if (caminhoImagem != null){
+
+                    ocultarTeclado();
+
+                    categBinding.progressDialog.setVisibility(View.VISIBLE);
+
+                    if (categoria == null) categoria = new Categoria();
+                    categoria.setNome(nomeCategoria);
+                    categoria.setTodos(categBinding.cbCategoria.isChecked());
+
+                    salvarImagensFirebase();
+
+                }else {
+                    ocultarTeclado();
+                    Toast.makeText(getContext(), "Escolha uma imagem para categoria.", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                categBinding.edtCategoria.setError("Nome Obrigatório.");
+            }
         });
         categBinding.imgCategoria.setOnClickListener(view -> verificaPermissionGaleria());
 
@@ -76,6 +107,29 @@ public class LojaCategoriaFragment extends Fragment {
 
         dialog = builder.create();
         dialog.show();
+    }
+
+    private void salvarImagensFirebase() {
+        StorageReference storageReference = FirebaseHelper.getStorageReference()
+                .child("imagens")
+                .child("categorias")
+                .child(categoria.getId() + ".jpeg");
+
+        UploadTask uploadTask = storageReference.putFile(Uri.parse(caminhoImagem));
+        uploadTask.addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnCompleteListener(task -> {
+
+            String urlImagem = task.getResult().toString();
+            categoria.setUrlImagem(urlImagem);
+            categoria.Salvar();
+
+            categoria = null;
+            dialog.dismiss();
+
+        })).addOnFailureListener(e -> {
+            dialog.dismiss();
+            Toast.makeText(getContext(), "Erro ao fazer upload da imagem.", Toast.LENGTH_SHORT).show();
+        });
+
     }
 
     private void verificaPermissionGaleria(){
@@ -128,4 +182,12 @@ public class LojaCategoriaFragment extends Fragment {
                 }
             }
     );
+
+    // Metodo para Ocultar o Teclado
+    private void ocultarTeclado(){
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(categBinding.edtCategoria.getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 }
